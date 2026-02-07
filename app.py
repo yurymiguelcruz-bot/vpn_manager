@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, make_response
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from datetime import datetime
+from datetime import datetime, timedelta
 import bcrypt
 import jwt
 import os
@@ -32,7 +32,7 @@ scheduler = Scheduler(outline)
 
 def generate_token(username):
     return jwt.encode(
-        {'username': username, 'exp': datetime.utcnow() + datetime.timedelta(hours=24)},
+        {'username': username, 'exp': datetime.utcnow() + timedelta(hours=24)},
         SECRET_KEY,
         algorithm='HS256'
     )
@@ -224,3 +224,4 @@ if __name__ == '__main__':
     
     print(f"🚀 Servidor iniciando en http://{host}:{port}")
     app.run(host=host, port=port, debug=False)
+# Fix

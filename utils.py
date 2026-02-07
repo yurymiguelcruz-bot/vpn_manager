@@ -47,3 +47,14 @@ def generate_share_message(key, plan):
     message += "Soporte: [Tu contacto]"
     
     return message
+
+def get_whatsapp_link(phone, message):
+    phone = phone.replace('+', '').replace(' ', '').replace('-', '')
+    if not phone.startswith('53') and len(phone) == 8:
+        phone = '53' + phone
+    return "https://wa.me/" + phone + "?text=" + quote(message)
+
+def get_telegram_link(username, message):
+    if username.startswith('@'):
+        username = username[1:]
+    return "https://t.me/" + username + "?text=" + quote(message)
