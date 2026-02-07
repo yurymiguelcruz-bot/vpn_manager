@@ -1,0 +1,9 @@
+flask==3.0.0
+requests==2.31.0
+schedule==1.2.0
+python-dateutil==2.8.2
+flask-limiter==3.5.0
+flask-jwt-extended==4.5.3
+pyopenssl==24.0.0
+bcrypt==4.1.2
+gunicorn==21.2.0
