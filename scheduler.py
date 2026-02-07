@@ -3,7 +3,7 @@ import time
 import threading
 from datetime import datetime
 from database import db
-from outline_api import outline
+from outline_api import OutlineManager
 
 class Scheduler:
     def __init__(self, outline_api):
