@@ -32,12 +32,13 @@ def generate_share_message(key, plan):
     
     data_text = "📊 ILIMITADO" if plan['data_limit_mb'] is None else f"📊 {plan['data_limit_mb']} MB"
     
-    message = f"""🚀 *VPN PREMIUM - Acceso Configurado*
+    # Usar .format() en lugar de f-string para evitar conflictos con {}
+    message = """🚀 *VPN PREMIUM - Acceso Configurado*
 
 👤 *Cliente:* {name}
 📋 *Plan:* {plan_name}
 {data_text}
-⏳ *Duración:* {plan['days']} días
-💰 *Precio:* {plan['price']} CUP
+⏳ *Duración:* {days} días
+💰 *Precio:* {price} CUP
 
 🔗 *Tu clave de acceso:*
