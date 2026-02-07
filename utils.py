@@ -27,18 +27,23 @@ def format_bytes(bytes_val):
 
 def generate_share_message(key, plan):
     name = key.get('client_name', 'Cliente')
-    plan_name = plan['name']
     url = key['access_url']
+    expires = key['expires_at'][:10]
     
-    data_text = "📊 ILIMITADO" if plan['data_limit_mb'] is None else f"📊 {plan['data_limit_mb']} MB"
+    if plan['data_limit_mb'] is None:
+        data_text = "ILIMITADO"
+    else:
+        data_text = str(plan['data_limit_mb']) + " MB"
     
-    # Usar .format() en lugar de f-string para evitar conflictos con {}
-    message = """🚀 *VPN PREMIUM - Acceso Configurado*
-
-👤 *Cliente:* {name}
-📋 *Plan:* {plan_name}
-{data_text}
-⏳ *Duración:* {days} días
-💰 *Precio:* {price} CUP
-
-🔗 *Tu clave de acceso:*
+    message = "VPN PREMIUM - Acceso Configurado\n\n"
+    message += "Cliente: " + name + "\n"
+    message += "Plan: " + plan['name'] + "\n"
+    message += "Datos: " + data_text + "\n"
+    message += "Duracion: " + str(plan['days']) + " dias\n"
+    message += "Precio: " + str(plan['price']) + " CUP\n\n"
+    message += "Tu clave de acceso:\n"
+    message += url + "\n\n"
+    message += "Valido hasta: " + expires + "\n"
+    message += "Soporte: [Tu contacto]"
+    
+    return message
